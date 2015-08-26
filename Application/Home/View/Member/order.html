@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<meta name="keywords" content="家庭清洁,马桶维修,管道疏通"></meta>
+<meta name="description" content="海伦服务集各种家庭服务于一身，给消费者提供更加便利和快捷的生活方式。""></meta>
+<title>海伦服务</title>
+<Link href="__PUBLIC__/css/main.css" type="text/css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/js/datetimepicker/jquery.datetimepicker.css"/>
+<script src="__PUBLIC__/js/datetimepicker/jquery.js"></script>
+<script src="__PUBLIC__/js/datetimepicker/jquery.datetimepicker.js"></script>
+<script src="__PUBLIC__/js/PCASClass.js"></script>
+<script>
+function ordersubmit123()
+{
+	var name = $("#fullname").val();
+    var phone = $("#phone").val();
+    var province = $("#province").val();
+    var city = $("#city").val();
+    var area = $("#area").val();
+    var detailarea = $("#detailarea").val();
+    var arraySrv = new Array();
+    $("#order_service_content ul").each(function() {
+        $(this).find("li").each(function(i) {
+        	if (i == 1) { 
+            	arraySrv.push($(this).text());
+            }
+            
+            if (i == 2) { 
+            	arraySrv.push($(this).children("input").val());
+            }
+            
+            if (i == 3) { 
+            	arraySrv.push($(this).text());
+            }
+    	});
+    });
+    
+    $.ajax({
+    	url:"{:U('home/member/submit_order')}",
+        type:"post",
+        data:{service:arraySrv,name:name,phone:phone,province:province,city:city,area:area,detailarea:detailarea},
+        dataType:"json",
+        success:function(res)
+        {
+        	if (res.status == 1)
+            {
+            	alert(res.msg);
+                window.location.replace("{:U('home/member/index')}");
+            }
+            else
+            {
+            	alert('submit failed');
+            }
+        }
+    });
+}
+</script>
+</head>
+
+<body>
+<div class="mainpage">
+    <include file="Public/header" />
+    
+	<div id="order_navagate">首页 &nbsp;&nbsp;&nbsp; 我的订单</div>
+    
+	<div id="order_submit_info">
+    	<div id="order_submit_info_sub">订单信息</div>
+        <div>
+            <form name="order">
+            	<div class="order_info">
+                    <ul>
+                        <li class="order_sequence">序号&nbsp;&nbsp;</li>
+                        <li class="order_content">服务项目&nbsp;&nbsp;</li>
+                        <li class="order_time">期望服务时间&nbsp;&nbsp;</li>
+                        <li class="order_price">价格&nbsp;&nbsp;</li>                                        
+                    </ul>
+                    <br />
+                    <div id="order_service_content">                
+                        <foreach name="services" item="vofirst" key="k">
+                	        <foreach name="vofirst" item="vo">
+                                <ul>
+                                    <li class="order_sequence">{$k+1}</li>
+                                    <li class="order_content">{$vo.servicename}</li>
+                                    <li class="order_time"><input type="text" class="datetimepicker"/></li>
+                                    <li class="order_price">{$vo.price}</li>                                                
+                                </ul>
+                                <br />
+                            </foreach>
+                        </foreach>
+                    </div>
+                </div>
+                <br />
+                <br />             
+                <div id="order_address_info">服务地址信息</div>
+                <div class="order_address">
+                    <ul>
+                        <li class="order_name">姓名</li>
+                        <li class="order_phone">联系电话</li>
+                        <li>省份</li>
+                        <li>城市</li>
+                        <li>区域</li>
+                        <li>小区信息</li>
+                    </ul>
+                    <br />
+                    <ul>
+                        <li class="order_name"><input type="text" id="fullname" /></li>
+                        <li class="order_phone"><input type="text" id="phone" /></li>                
+                        <select name="province" id="province"></select><select name="city" id="city"></select><select name="area" id="area"></select>
+                        <li><input type="text" id="detailarea" /></li>
+                    </ul>                   
+                </div>
+                
+                <div id="order_submit_box">
+                    <input type="button" name="submit" onclick="ordersubmit123();" value="提交订单" />
+                </div>
+            </form>
+        </div>
+	</div>
+	
+	<div style="position:relative; height:10px;"></div>
+    <div style="position: relative; height:200px;">
+	</div>	
+	
+	<div style="position:relative; height:10px;"></div>	
+    
+	<include file="Public/footer" />
+</div>
+
+</body>
+<script>
+    $('.datetimepicker').datetimepicker();
+    new PCAS("province","city","area","江苏省","南京市","江宁区");
+</script>
+</html>

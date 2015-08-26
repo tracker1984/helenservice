@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Bootstrap 3, from LayoutIt!</title>
+
+    <meta name="description" content="Source code generated using layoutit.com">
+    <meta name="author" content="LayoutIt!">
+
+    <link href="__PUBLIC__/css/bootstrap.min.css" rel="stylesheet">
+    <link href="__PUBLIC__/square/green.css" rel="stylesheet">  
+    <link href="__PUBLIC__/css/navigation.css" rel="stylesheet">  
+    <Link href="__PUBLIC__/css/modal-login.css" rel="stylesheet">    
+    <link rel="stylesheet" href="__PUBLIC__/css/font-awesome.min.css">        
+    <link rel="stylesheet" href="__PUBLIC__/js/datetimepicker/jquery.datetimepicker.css"/>
+
+  </head>
+  <body> 
+<div class="container">
+	<div class="row">
+        <div class="col-md-8">  	
+			<div class="carousel slide" id="carousel-361718">
+				<ol class="carousel-indicators">
+					<li class="active" data-slide-to="0" data-target="#carousel-361718">
+					</li>
+					<li data-slide-to="1" data-target="#carousel-361718">
+					</li>
+					<li data-slide-to="2" data-target="#carousel-361718">
+					</li>
+				</ol>
+				<div class="carousel-inner">
+					<div class="item active" style="background:URL("__PUBLIC__/img/gg.jpg");background-size:cover;">
+						<img alt="Carousel Bootstrap First" src="__PUBLIC__/img/1.jpg">
+						<div class="carousel-caption">
+							<h4>
+								First Thumbnail label
+							</h4>
+							<p>
+								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+							</p>
+						</div>
+					</div>
+					<div class="item" style="background:URL("__PUBLIC__/img/gg.jpg");background-size:cover;">
+						<img alt="Carousel Bootstrap Second" src="__PUBLIC__/img/2.jpg">
+						<div class="carousel-caption">
+							<h4>
+								Second Thumbnail label
+							</h4>
+							<p>
+								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+							</p>
+						</div>
+					</div>
+					<div class="item" style="background:URL("__PUBLIC__/img/gg.jpg");background-size:cover;">
+						<img alt="Carousel Bootstrap Third" src="__PUBLIC__/img/3.jpg">
+						<div class="carousel-caption">
+							<h4>
+								Third Thumbnail label
+							</h4>
+							<p>
+								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+							</p>
+						</div>
+					</div>
+				</div> <a class="left carousel-control" href="#carousel-361718" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a> <a class="right carousel-control" href="#carousel-361718" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+			</div>
+            <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">HelenService</a>            
+            </div> <!--END navbar-header-->
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="#" class="">首页</a></li>                      
+                        
+                        <li class=" down"><a href="#" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">预留 <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Change Time Entry</a></li>
+                                <li><a href="#">Report</a></li>
+                            </ul>
+                        </li>
+                        
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                <gt name="mid" value="0"> 
+                    <li class=" dropdown"><a href="#" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{$username}  <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li class=""><a href="http://bootsnipp.com/blog" class="animate">我的订单<span class="pull-right glyphicon glyphicon-pencil"></span></a></li>
+                                <li class=""><a href="http://bootsnipp.com/resources" class="animate">修改密码<span class="pull-right glyphicon glyphicon-align-justify"></span></a></li> 
+                            </ul>
+                    </li>
+                    <li class=""><a href="#">Logout</a></li>
+                    <else/>
+                      <li class="animate"><a href="#" class="btn" role="button" data-toggle="modal" data-target="#register-modal">注册</a></li>          
+                      <li class="animate"><a href="#" class="btn" role="button" data-toggle="modal" data-target="#login-modal">登录</a></li>    
+                    </gt>
+                </ul>
+            </div> <!--END navbar-collapse-->
+            </div>  
+            </nav>
+		</div>
+		<div class="col-md-4">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>
+							#
+						</th>
+						<th>
+							Product
+						</th>
+						<th>
+							Payment Taken
+						</th>
+						<th>
+							Status
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							1
+						</td>
+						<td>
+							TB - Monthly
+						</td>
+						<td>
+							01/04/2012
+						</td>
+						<td>
+							Default
+						</td>
+					</tr>
+					<tr class="active">
+						<td>
+							1
+						</td>
+						<td>
+							TB - Monthly
+						</td>
+						<td>
+							01/04/2012
+						</td>
+						<td>
+							Approved
+						</td>
+					</tr>					
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+            <ul id="myTab" class="nav nav-tabs">
+                <li class="active"><a href="#service" data-toggle="tab">预约服务</a></li>
+                <li><a href="#craftsman" data-toggle="tab">工匠注册</a></li>
+            </ul>
+            <div id="myTabContent" class="tab-content">
+                <div class="tab-pane fade in active" id="service">
+                	<h4>请选择您需要的服务</h4>
+                    <form name="servicecheckbox" method="post" action="{:U('home/index/enterorder')}">
+                    <ul class="list-group">
+                    	<li class="list-group-item">
+                        	<ul class="list-inline" style="padding-left:3%">
+                            	<li style="width:5%">序号</li>
+                                <li style="width:20%">服务名称</li>
+                                <li style="width:10%">说明</li>
+                                <li style="width:10%">价格</li>
+                                <li style="width:40%">期望服务时间</li>
+                            </ul>
+                        </li>            
+                        <volist name='service' id='vo' key="k" mod='5'>
+                        	<li class="list-group-item">
+                            	<ul class="list-inline" style="padding-left:3%">
+                                    <li style="width:5%">{$k}</li>
+                                    <li style="width:20%"><input tabindex="{$k}" type="checkbox" id="square-checkbox-{$k}" name="square-checkbox" value="{$vo.serviceid}" />
+                                        <label for="square-checkbox-{$k}">{$vo.servicename}</label>
+                                    </li>
+                                    <li style="width:10%"><a href="#modal-container-{$k}" role="button" class="btn" data-toggle="modal">说明</a></li>
+                                    <li style="width:10%">{$vo.price}</li>
+                                    <li style="width:40%"><input type="text" class="datetimepicker"/></li>
+                            	</ul>
+                            </li>                
+                        </volist>                         
+                        <li class="list-group-item">
+                        	<h5>请填写您的地址信息</h5>
+                            <ul class="list-inline">
+                                <li style="width:15%">姓氏</li>
+                                <li style="width:15%">联系电话</li>
+                                <li style="width:40%">城市信息</li>                               
+                                <li style="width:20%">小区信息</li>
+                            </ul>
+                        </li>
+                        <li class="list-group-item">      
+                            <ul class="list-inline">
+                                <li style="width:15%" class="order_name"><input type="text" id="fullname" /></li>
+                                <li style="width:15%" class="order_phone"><input type="text" id="phone" /></li>                
+                                <li style="width:40%"><select name="province" id="province"></select><select name="city" id="city"></select><select name="area" id="area"></select></li>
+                                <li style="width:20%" ><input type="text" id="detailarea" /></li>
+                            </ul>
+                        </li>     
+                        <li class="list-group-item"><input type="button" name="submit" onclick="ordersubmit123();" value="提交订单" /></li>                       
+                    </ul>                   
+                    </form>
+                </div>
+                <div class="tab-pane fade" id="craftsman">
+                    <form name="craftsmancheckbox" method="post" action="{:U('home/index/craftsmanregister')}">
+                    	<ul class="list-group">                 
+                            <volist name='craftsman' id='vo' key="k">                           
+                                <li class="list-group-item">
+                                    <input tabindex={$k} type="radio" id="square-radio-{$k+52}" name="square-radio" value="{$vo.craftsmanshipid}" />
+                                    <label for="square-radio-{$k+52}">{$vo.name}</label>
+                                </li>                                                           
+                            </volist>
+                            <li class="list-group-item"><input type="submit" name="Submit" value="提交技能"></li>
+                        </ul> 
+                    </form>
+                </div>
+            </div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+        <include file="Public/footer" />
+		</div>
+	</div>   
+</div>
+
+ <include file="modallogin" />
+ <include file="register" />
+  <include file="description" />     
+    <script src="__PUBLIC__/js/jquery-2.1.4.min.js"></script>    
+    <script src="__PUBLIC__/js/bootstrap.min.js"></script>
+    <script src="__PUBLIC__/js/icheck.js?v=1.0.2"></script>    
+    <script src="__PUBLIC__/js/modallogin.js"></script>
+    <script src="__PUBLIC__/js/datetimepicker/jquery.datetimepicker.js"></script>
+	<script src="__PUBLIC__/js/PCASClass.js"></script>
+    <script>
+$(document).ready(function(){
+  $('#myTabContent input').iCheck({
+	checkboxClass: 'icheckbox_square-green',
+    radioClass: 'iradio_square-green',
+    increaseArea: '20%' // optional
+  });  
+  
+  $('.datetimepicker').datetimepicker();
+  new PCAS("province","city","area","江苏省","南京市","江宁区");    
+
+});
+
+function ordersubmit123()
+{
+	var name = $("#fullname").val();
+    var phone = $("#phone").val();
+    var province = $("#province").val();
+    var city = $("#city").val();
+    var area = $("#area").val();
+    var detailarea = $("#detailarea").val();
+    var arraySrv = new Array();
+    $("#order_service_content ul").each(function() {
+        $(this).find("li").each(function(i) {
+        	if (i == 1) { 
+            	arraySrv.push($(this).text());
+            }
+            
+            if (i == 2) { 
+            	arraySrv.push($(this).children("input").val());
+            }
+            
+            if (i == 3) { 
+            	arraySrv.push($(this).text());
+            }
+    	});
+    });
+    
+    $.ajax({
+    	url:"{:U('home/member/submit_order')}",
+        type:"post",
+        data:{service:arraySrv,name:name,phone:phone,province:province,city:city,area:area,detailarea:detailarea},
+        dataType:"json",
+        success:function(res)
+        {
+        	if (res.status == 1)
+            {
+            	alert(res.msg);
+                window.location.replace("{:U('home/member/index')}");
+            }
+            else
+            {
+            	alert('submit failed');
+            }
+        }
+    });
+}
+</script>
+  </body>
+</html>

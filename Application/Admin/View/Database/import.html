@@ -1,0 +1,69 @@
+<taglib name="Admin\TagLib\EasyUI" />
+
+<easyui:treegrid options="treegrid.options" fields="treegrid.fields" />
+
+<script type="text/javascript">
+var databaseImportModule = {
+	  dialog: '#globel-dialog-div',
+	treegrid: '#database_importlist_treegrid',
+	//操作格式化
+	operate: function(time,row){
+		var btn = [];
+		btn.push("<a href='javascript:;' time='"+time+"' onclick='databaseImportModule.import(this)'>还原</a>");
+		btn.push("<a href='javascript:;' time='"+time+"' onclick='databaseImportModule.del(this)'>删除</a>");
+		return btn.join(' | ');
+	},
+	//还原备份数据
+	import:function(that){
+		var time = $(that).attr("time");
+		var href = "<{:U('Database/import')}>"+"?time="+time;
+		$.messager.confirm('提示信息', '确定要开始还原数据吗？', function(result){
+			if(!result) return false;
+			$.messager.progress({text:"开始还原数据"});
+			$.get(href,success, 'json');
+		});
+		
+		function success(data){
+			if(data.status){
+				if(data.gz){
+					//启用了压缩,无法获知具体的总数量,模拟一个progressbar
+					$($.messager.progress("bar")).progressbar({text:data.info});
+				}else{
+					//未启用压缩
+					$($.messager.progress("bar")).progressbar({text:data.info,value:data.rate});
+				}
+	            if(data.part){
+	            	$.get(href,{"part":data.part,"start":data.start},success,"json");
+	            }else{
+	            	$.app.method.tip('提示信息', data.info, 'info');
+	            	$.messager.progress("close");
+	            }
+	        } else {
+	            $.app.method.tip('错误信息', data.info, 'error');
+	            $.messager.progress("close");
+	        }
+		}
+	},
+	//删除备份数据
+	del:function(that){
+		var time = $(that).attr("time");
+		$.messager.confirm('提示信息', '确定要删除该备份吗？', function(result){
+			if(!result) return false;
+			$.messager.progress({text:'处理中，请稍候...'});
+			$.post("<{:U('Database/del')}>", {time: time}, function(res){
+				$.messager.progress('close');
+				if(!res.status){
+					$.app.method.tip('错误信息', res.info, 'error');
+				}else{
+					$.app.method.tip('提示信息', res.info, 'info');
+					databaseImportModule.refresh();
+				}
+			}, 'json');
+		});
+	},
+	//刷新
+	refresh: function(){
+		$(this.treegrid).treegrid('reload');
+	}
+};
+</script>
