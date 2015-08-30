@@ -91,13 +91,21 @@
                         
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                <gt name="mid" value="0"> 
+                	<gt name="mid" value="0"> 
                     <li class=" dropdown"><a href="#" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{$username}  <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li class=""><a href="http://bootsnipp.com/blog" class="animate">我的订单<span class="pull-right glyphicon glyphicon-pencil"></span></a></li>
                                 <li class=""><a href="http://bootsnipp.com/resources" class="animate">修改密码<span class="pull-right glyphicon glyphicon-align-justify"></span></a></li> 
                             </ul>
                     </li>
+                    <gt name="craftsmanshipid" value="0">
+                    <li class=" dropdown"><a href="#" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">工匠中心  <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li class=""><a href="http://bootsnipp.com/blog" class="animate">可接订单<span class="pull-right glyphicon glyphicon-pencil"></span></a></li>
+                                <li class=""><a href="http://bootsnipp.com/resources" class="animate">已服务订单<span class="pull-right glyphicon glyphicon-align-justify"></span></a></li> 
+                            </ul>
+                    </li>
+                    </gt>
                     <li class=""><a href="#">Logout</a></li>
                     <else/>
                       <li class="animate"><a href="#" class="btn" role="button" data-toggle="modal" data-target="#register-modal">注册</a></li>          
@@ -163,7 +171,9 @@
 		<div class="col-md-12">
             <ul id="myTab" class="nav nav-tabs">
                 <li class="active"><a href="#service" data-toggle="tab">预约服务</a></li>
+                <elt name="craftsmanshipid" value="0">
                 <li><a href="#craftsman" data-toggle="tab">工匠注册</a></li>
+                </elt>
             </ul>
             <div id="myTabContent" class="tab-content">
                 <div class="tab-pane fade in active" id="service">

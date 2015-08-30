@@ -15,12 +15,15 @@ class IndexController extends Controller {
 		if (! $this->memberID){
 			$this->memberID = 0;
 			$this->mid = 0;
+			$this->craftsmanshipid = 0;
 		}
 		else{
 			$this->mid = $this->memberID;  //mid for template
 			$dao = D("member");
 			$this->memberInfo = $dao->where("memberid=".$this->memberID)->find();
 			$this->username = $this->memberInfo['username']; //mid for template
+			
+			$this->craftsmanshipid = D("journeyman")->field('journeymanid')->where("memberid=".$this->memberID)->find();
 		}
 		
 		$this->service = D('Service')->select();		
