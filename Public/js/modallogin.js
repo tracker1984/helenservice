@@ -26,45 +26,50 @@ $(function() {
 				var $lg_success = 1;				
 				$.ajax({						
 						type:"post",
-						url:"/myhs/Public/php/login.php",//"{:U('home/index/doLogin')}",
+						url:"doLogin",//"/myhs/Public/php/login.php",
 						data: $('#login-form').serialize(),						
 						success:function(res)
 						{
-							alert(res);
-							if (res == 0)
+							//alert(res.info);
+							status = res.status;
+							//alert('res:'+res);
+							if (status == 0)
 							{
 								$lg_success = 0;
 								//alert(res.msg);
 								//window.location.replace("{:U('home/member/index')}");
 							}
-							else if (res == 2)
+							else if (status == 2)
 							{
 								$lg_success = 2;
 							}
-							else if (res == 3) //error password
+							else if (status == 3) //error password
 							{
 								//alert('submit failed');
 								$lg_success = 3;
 							}
-							else if (res == 1)
+							else if (status == 1)
 							{
 								$lg_success = 1;
 							}
+							
+							//alert('$lg_success:'+$lg_success);
+			                if ($lg_success == 0) {
+			                    msgChange($('#div-login-msg'), $('#icon-login-msg'), $('#text-login-msg'), "success", "glyphicon-ok", "Login OK");
+			                    window.location.href = res.url;
+			                } else if ($lg_success == 1) {
+			                    msgChange($('#div-login-msg'), $('#icon-login-msg'), $('#text-login-msg'), "error", "glyphicon-remove", "Database error");
+			                }
+							 else if($lg_success == 2) {
+			                    msgChange($('#div-login-msg'), $('#icon-login-msg'), $('#text-login-msg'),  "error", "glyphicon-remove", "Username doesn't exist");
+			                }
+							 else if($lg_success == 3) {
+			                    msgChange($('#div-login-msg'), $('#icon-login-msg'), $('#text-login-msg'),  "error", "glyphicon-remove", "Error password");
+			                }
+			                return false;							
+
 						}
 				});
-				
-                if ($lg_success == 0) {
-                    msgChange($('#div-login-msg'), $('#icon-login-msg'), $('#text-login-msg'), "success", "glyphicon-ok", "Login OK");
-                } else if ($lg_success == 1) {
-                    msgChange($('#div-login-msg'), $('#icon-login-msg'), $('#text-login-msg'), "error", "glyphicon-remove", "Database error");
-                }
-				 else if($lg_success == 2) {
-                    msgChange($('#div-login-msg'), $('#icon-login-msg'), $('#text-login-msg'),  "error", "glyphicon-remove", "Username doesn't exist");
-                }
-				 else if($lg_success == 3) {
-                    msgChange($('#div-login-msg'), $('#icon-login-msg'), $('#text-login-msg'),  "error", "glyphicon-remove", "Error password");
-                }
-                return false;
                 break;
             case "lost-form":
                 var $ls_email=$('#lost_email').val();
