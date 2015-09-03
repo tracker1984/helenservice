@@ -21,9 +21,7 @@ $(function() {
     $("form").submit(function () {
         switch(this.id) {
             case "login-form":
-                //var $lg_username=$('#login_username').val();
-                //var $lg_password=$('#login_password').val();
-				var $lg_success = 1;				
+                var $lg_success = 1;				
 				$.ajax({						
 						type:"post",
 						url:"doLogin",//"/myhs/Public/php/login.php",
@@ -81,9 +79,10 @@ $(function() {
                 return false;
                 break;
             case "register-form":
-                //var $rg_username=$('#register_username').val();
+                var $rg_username=$('#register_username').val();
                 //var $rg_email=$('#register_email').val();
                 //var $rg_password=$('#register_password').val();
+				alert($rg_username);
 				var $rg_success = 1;
 				$.ajax({
 						url:"{:U('home/index/doJoin')}",

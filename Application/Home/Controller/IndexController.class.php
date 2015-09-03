@@ -11,7 +11,7 @@ class IndexController extends Controller {
 			session('sessionID', $this->sessionID);
 		}
 		
-		$this->memberID = session('memberID');
+		$this->memberID = session('memberID');		
 		if (! $this->memberID){
 			$this->memberID = 0;
 			$this->mid = 0;
@@ -19,6 +19,7 @@ class IndexController extends Controller {
 		}
 		else{
 			$this->mid = $this->memberID;  //mid for template
+			
 			$dao = D("member");
 			$this->memberInfo = $dao->where("memberid=".$this->memberID)->find();
 			$this->username = $this->memberInfo['username']; //mid for template
