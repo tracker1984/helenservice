@@ -50,50 +50,16 @@ class IndexController extends Controller {
 		}
 	}
 	
-	public function doJoin(){
-
-	$data['username'] = strip_tags(trim($_POST['username']));
-	$data['email'] = strip_tags(trim($_POST['email']));
-	$data['password'] = strip_tags($_POST['password']);
-	$data['confirm'] = strip_tags($_POST['confirm']);
-	if($data['username'] == ''){
-		$this->error('用户名不能为空');
-	}
-	
-	if($data['email'] == ''){
-		$this->error('邮箱不能为空');
-	}
-	
-	if(!preg_match('/^[1-9a-zA-Z\_]{3,15}\@[1-9a-zA-Z\_]{2,10}\.[1-9a-zA-Z\_\.]{3,15}$/', $data['email'])){
-		$this->error('邮箱格式错误');
-	}
-	
-	if($data['password'] == ''){
-		$this->error('密码不能为空');
-	}
-	
-	if($data['password'] != $data['confirm']){
-		$this->error('两次密码不一致');
-	}
-	
-	$data['password'] = MD5($data['password']);
-	$dao = D('Member');
-	$id = $dao->add($data);
-	if($id){
-		session('memberID', $id);
-		$this->success('注册成功',U("home/Index/index"));
-	}
-	else{
-		$this->error('注册失败');
-	}
-		//if ($dao->create()){
-
-			//$this->ajaxReturn(array('status'=>1,'msg'=>"good"));
-			//$this->redirect ("Index/index");			
-		//}
-		//else{
-		//	dump ( $dao->getError () );
-		//}		
+	public function doJoin(){		
+		$dao = D('Member');
+		if ($dao->create()){
+			$id = $dao->add();
+			session('memberID', $id);
+			$this->redirect ("Index/index");			
+		}
+		else{			
+			$this->error('注册失败');
+		}			
 	}
 	
 	public function Login(){
