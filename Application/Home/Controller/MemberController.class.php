@@ -26,7 +26,12 @@ class MemberController extends Controller {
 	}
 	
 	public function index(){
-		echo "show my home page here!";
+		$dao = M("Order");
+		$condition['memberid'] = $this->memberID;
+		$condition['status'] = 1;
+		$service_notcomplete = $dao->where($condition)->select();
+		$this->assign('booked_service', $this->service_notcomplete);		
+		$this->display();
 	}   
 	
 	public function submit_order(){
