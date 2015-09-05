@@ -101,14 +101,14 @@ $("#username").blur(
 		var username = $("#username").val();		
 		$.post("{:U('home/index/checkName')}", {'username' : username }, function(data) {
 			if (data == 0) {
-				alert("ÓÃ»§Ãû¿ÉÓÃ");
+				alert("ç”¨æˆ·åå¯ç”¨");
 				//error['username'] = 0;
 				//$('#tooltip1').attr('class','tooltip-info visible-inline success');
 			} else {
 				//error['username'] = 1;
 				//$('#tooltip1').attr('class','tooltip-info visible-inline error');
 				//$('#mess1').html(data);
-				//alert("ÓÃ»§ÃûÒÑ´æÔÚ");
+				//alert("ç”¨æˆ·åå·²å­˜åœ¨");
 			}
 		})
 		return false;
@@ -140,18 +140,18 @@ $("#username").blur(
 		messages:
 		{
 			username:{
-				required:"±ØÌî"
+				required:"å¿…å¡«"
 			},
 			email:{
-				required:"±ØÌî",
-				email:"E-Mail¸ñÊ½²»ÕıÈ·"
+				required:"å¿…å¡«",
+				email:"E-Mailæ ¼å¼ä¸æ­£ç¡®"
 			},
 			password:{
-				required:"²»ÄÜÎª¿Õ",
-				rangelength:$.format("ÃÜÂë×îĞ¡³¤¶È:{0}, ×î´ó³¤¶È:{1}¡£")
+				required:"ä¸èƒ½ä¸ºç©º",
+				rangelength:$.format("å¯†ç æœ€å°é•¿åº¦:{0}, æœ€å¤§é•¿åº¦:{1}ã€‚")
 			},
 			confirm: {
-				equalTo:"Á½´ÎÃÜÂëÊäÈë²»Ò»ÖÂ"
+				equalTo:"ä¸¤æ¬¡å¯†ç è¾“å…¥ä¸ä¸€è‡´"
 			}
 		}
 	});	
