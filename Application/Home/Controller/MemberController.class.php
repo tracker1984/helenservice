@@ -19,18 +19,28 @@ class MemberController extends Controller {
 		}
 		else{
 			$this->mid = $this->memberID;  //mid for template
-			//$dao = D("member");
-			//$this->memberInfo = $dao->where("id=".$this->memberID)->find();
-			//$this->username = $this->memberInfo['username']; //mid for template
+			$dao = D("member");
+			$this->memberInfo = $dao->where("memberid=".$this->memberID)->find();
+			$this->username = $this->memberInfo['username']; //mid for template
 		}
 	}
 	
 	public function index(){
 		$dao = M("Order");
 		$condition['memberid'] = $this->memberID;
-		$condition['status'] = 1;
-		$service_notcomplete = $dao->where($condition)->select();
-		$this->assign('booked_service', $this->service_notcomplete);		
+		//$condition['status'] = 1;
+		$map['status'] = array('lt', 3);
+		$service_notcomplete = $dao->where($condition)->where($map)->select();
+		if ($service_notcomplete)
+		{
+			$this->assign('service_num', 1);
+			$this->assign('booked_service', $service_notcomplete);
+		}
+		else
+		{
+			$this->assign('service_num', 0);
+		}
+				
 		$this->display();
 	}   
 	
@@ -60,22 +70,23 @@ class MemberController extends Controller {
 		$createdate = time();
 		$ipaddress = get_client_ip();
 		
+		$Srv= M("Service");
+		
 		for ($i= 0; $i < count($service); $i++){
-			if ($i % 3 == 0){
-				$data['servicename'] = $service[$i];				
-			}
+			if ($i % 2 == 0){
+				$condition['serviceid'] = $service[$i];
+				$tempitem = $Srv->where($condition)->find();
+				$data['servicename'] = $tempitem['servicename'];
+				$data['price'] = $tempitem['price'];				
+			}		
 			
-			if ($i % 3 == 1){
+			if ($i % 2 == 1){
 				$data['expecteddate'] = $service[$i];
-			}
-			
-			if ($i % 3 == 2){
-				$data['price'] = $service[$i];
 			}		
 			
 			$msg .= $service[$i];
 			
-			if ($loop_var == 3)	{
+			if ($loop_var == 2)	{
 				$data['memberid'] = $this->memberID;
 				$data['orderid'] = $order_id;
 				//$data[''] = date("Y-m-d H:i:s", time());

@@ -80,7 +80,7 @@
             </div> <!--END navbar-header-->
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="#" class="">首页</a></li>                      
+                    <li><a href="{:U('home/index/index')}" class="">首页</a></li>                      
                         
                         <li class=" down"><a href="#" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">预留 <span class="caret"></span></a>
                             <ul class="dropdown-menu">
@@ -94,7 +94,7 @@
                 	<gt name="mid" value="0"> 
                     <li class=" dropdown"><a href="#" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{$username}  <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li class=""><a href="http://bootsnipp.com/blog" class="animate">我的订单<span class="pull-right glyphicon glyphicon-pencil"></span></a></li>
+                                <li class=""><a href="{:U('home/member/index')}" class="animate">我的订单<span class="pull-right glyphicon glyphicon-pencil"></span></a></li>
                                 <li class=""><a href="http://bootsnipp.com/resources" class="animate">修改密码<span class="pull-right glyphicon glyphicon-align-justify"></span></a></li> 
                             </ul>
                     </li>
@@ -178,7 +178,7 @@
             <div id="myTabContent" class="tab-content">
                 <div class="tab-pane fade in active" id="service">
                 	<h4>请选择您需要的服务</h4>
-                    <form name="servicecheckbox" method="post" action="{:U('home/index/enterorder')}">
+                    <form id="serviceform" name="servicecheckbox" method="post" action="">
                     <ul class="list-group">
                     	<li class="list-group-item">
                         	<ul class="list-inline" style="padding-left:3%">
@@ -193,8 +193,7 @@
                         <volist name='service' id='vo' key="k">
                         	<li class="list-group-item">
                             	<ul class="list-inline" style="padding-left:3%">
-                                    <li style="width:5%">{$k}</li>
-                                    <!--li class="service_selected" style="width:20%"-->
+                                    <li style="width:5%">{$k}</li>                                    
                                     <li style="width:20%">
                                     	<input tabindex="{$k}" type="checkbox" id="square-checkbox-{$k}" name="square-checkbox" value="{$vo.serviceid}" />
                                         <label for="square-checkbox-{$k}">{$vo.servicename}</label>
@@ -217,13 +216,13 @@
                         </li>
                         <li class="list-group-item">      
                             <ul class="list-inline">
-                                <li style="width:15%" class="order_name"><input type="text" id="fullname" /></li>
-                                <li style="width:15%" class="order_phone"><input type="text" id="phone" /></li>                
+                                <li style="width:15%" class="order_name"><input name="customname" type="text" id="fullname" /></li>
+                                <li style="width:15%" class="order_phone"><input name="customphone" type="text" id="phone" /></li>                
                                 <li style="width:40%"><select name="province" id="province"></select><select name="city" id="city"></select><select name="area" id="area"></select></li>
-                                <li style="width:20%" ><input type="text" id="detailarea" /></li>
+                                <li style="width:20%" ><input name="customarea" type="text" id="detailarea" required /></li>
                             </ul>
                         </li>     
-                        <li class="list-group-item"><input type="button" name="submit" onclick="ordersubmit123();" value="提交订单" /></li>                       
+                        <li class="list-group-item"><button type="submit" class="btn btn-default">提交订单</button></li>                       
                     </ul>                   
                     </form>
                 </div>
@@ -251,10 +250,10 @@
 </div>
 
   <include file="description" />     
-    <script src="__PUBLIC__/js/jquery-2.1.4.min.js"></script>    
+    <script src="__PUBLIC__/js/jquery-2.1.4.min.js"></script>
+    <script src="__PUBLIC__/js/jquery.validate.js"></script>    
     <script src="__PUBLIC__/js/bootstrap.min.js"></script>
     <script src="__PUBLIC__/js/icheck.js?v=1.0.2"></script>    
-    <script src="__PUBLIC__/js/modallogin.js"></script>
     <script src="__PUBLIC__/js/datetimepicker/jquery.datetimepicker.js"></script>
 	<script src="__PUBLIC__/js/PCASClass.js"></script>
     <script>
@@ -266,9 +265,88 @@ $(document).ready(function(){
   });  
   
   $('.datetimepicker').datetimepicker();
-  new PCAS("province","city","area","江苏省","南京市","江宁区");    
+  new PCAS("province","city","area","江苏省","南京市","江宁区"); 
+  
+  $('#serviceform').validate({ 		
+		submitHandler: function(form){
+				ordersubmit123();
+			},
+		rules : {  
+			customname : {  
+				required : true  
+			},  
+			customphone : {  
+				required : true  
+			},  
+			customarea : {  
+				required : true  
+			}  
+		}, 
+		messages : {  
+			customname : {  
+				required : "请输入您的姓名."  
+			},  
+			customphone : {  
+				required : "请输入您的联系方式."  
+			},  
+			customarea : {  
+				required : "请输入详细地址信息."  
+			}  
+		},   
+		 
+	});    
 
 });
+
+ 
+
+$('#serviceform input').keypress(function(e) {  
+	if (e.which == 13) {  
+		if ($('#serviceform').validate().form()) {  
+			$('#serviceform').submit();  
+		}  
+		return false;  
+	}  
+});
+function handleSubmit() {
+	alert("submit begin");
+	/*$('#serviceform').validate({   
+		/*rules : {  
+			customname : {  
+				required : true  
+			},  
+			customphone : {  
+				required : true  
+			},  
+			customarea : {  
+				required : true  
+			}  
+		},  
+		messages : {  
+			customname : {  
+				required : "请输入您的姓名."  
+			},  
+			customphone : {  
+				required : "请输入您的联系方式."  
+			},  
+			customarea : {  
+				required : "请输入详细地址信息."  
+			}  
+		},   
+		submitHandler : function(form) {  
+			ordersubmit123();
+		}  
+	});  
+
+	$('#serviceform input').keypress(function(e) {  
+		if (e.which == 13) {  
+			if ($('#serviceform').validate().form()) {  
+				$('#serviceform').submit();  
+			}  
+			return false;  
+		}  
+	});*/
+}
 
 function ordersubmit123()
 {
@@ -279,27 +357,20 @@ function ordersubmit123()
     var area = $("#area").val();
     var detailarea = $("#detailarea").val();
     var arraySrv = new Array();
-    $("#order_service_content li").each(function() {
+    $("#order_service_content > li").each(function(j) {
 		//if ($("[type='checkbox']").attr("checked",'true'))
 		//if ($("[type='checkbox']").prop("checked", true))
-		if ($("#input[name='square-checkbox']").prop("checked", true))
+		//alert("each list group"+j);
+		var test = document.getElementById("square-checkbox-"+(j+1)).checked;
+		if (test == true)
+		//if ($("#input[name='square-checkbox']").prop("checked", true))
 		{
-			$(this).find("li").each(function(i) {
-				if (i == 1) { 
-					arraySrv.push($(this).text());
-				}
-				
-				if (i == 2) { 
-					arraySrv.push($(this).children("input").val());
-				}
-				
-				if (i == 3) { 
-					arraySrv.push($(this).text());
-				}
-			});
+			arraySrv.push(j+1);
+			arraySrv.push($(this).find(".datetimepicker").val());
 		}
     });
     
+	//alert(arraySrv);
     $.ajax({
     	url:"{:U('home/member/submit_order')}",
         type:"post",

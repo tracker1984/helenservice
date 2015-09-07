@@ -49,7 +49,8 @@
         </form>
     </div>
 </div>
-<script src="__PUBLIC__/js/jquery-2.1.4.min.js"></script>    
+<script src="__PUBLIC__/js/jquery-2.1.4.min.js"></script>
+<script src="__PUBLIC__/js/jquery.validate.js"></script>        
 <script src="__PUBLIC__/js/bootstrap.min.js"></script>
 <script>
 $(document).ready(function(){
@@ -151,6 +152,7 @@ $("#username").blur(
 				rangelength:$.format("密码最小长度:{0}, 最大长度:{1}。")
 			},
 			confirm: {
+				required:"必填",
 				equalTo:"两次密码输入不一致"
 			}
 		}

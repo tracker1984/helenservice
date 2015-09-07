@@ -31,7 +31,7 @@
             </div> <!--END navbar-header-->
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="#" class="">首页</a></li>                      
+                    <li><a href="{:U('home/index/index')}" class="">首页</a></li>                      
                         
                         <li class=" down"><a href="#" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">预留 <span class="caret"></span></a>
                             <ul class="dropdown-menu">
@@ -45,7 +45,7 @@
                 	<gt name="mid" value="0"> 
                     <li class=" dropdown"><a href="#" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{$username}  <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li class=""><a href="http://bootsnipp.com/blog" class="animate">我的订单<span class="pull-right glyphicon glyphicon-pencil"></span></a></li>
+                                <li class=""><a href="{:U('home/member/index')}" class="animate">我的订单<span class="pull-right glyphicon glyphicon-pencil"></span></a></li>
                                 <li class=""><a href="http://bootsnipp.com/resources" class="animate">修改密码<span class="pull-right glyphicon glyphicon-align-justify"></span></a></li> 
                             </ul>
                     </li>
@@ -66,6 +66,9 @@
             </div> <!--END navbar-collapse-->
             </div>  
             </nav>
+            <if condition="$service_num eq 0">
+            <p>没有未处理的订单</p>
+            <else />
 			<table class="table table-striped table-hover">
 				<thead>
 					<tr>
@@ -73,89 +76,28 @@
 							#
 						</th>
 						<th>
-							Product
+							服务名称
 						</th>
 						<th>
-							Payment Taken
+							期望日期
 						</th>
 						<th>
-							Status
+							状态
 						</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>
-							1
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							01/04/2012
-						</td>
-						<td>
-							Default
-						</td>
-					</tr>
-					<tr class="active">
-						<td>
-							1
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							01/04/2012
-						</td>
-						<td>
-							Approved
-						</td>
-					</tr>
-					<tr class="success">
-						<td>
-							2
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							02/04/2012
-						</td>
-						<td>
-							Declined
-						</td>
-					</tr>
-					<tr class="warning">
-						<td>
-							3
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							03/04/2012
-						</td>
-						<td>
-							Pending
-						</td>
-					</tr>
-					<tr class="danger">
-						<td>
-							4
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							04/04/2012
-						</td>
-						<td>
-							Call in to confirm
-						</td>
-					</tr>
+                 <foreach name="booked_service" item="vo" key="k">                   
+                    <tr>
+						<td>{$k+1}</td>
+						<td>{$vo.servicename}</td>
+						<td>{$vo.expecteddate}</td>                        
+						<td>{$vo.status}</td>
+					</tr>                   
+                </foreach>					
 				</tbody>
 			</table>
+            </if>
 		</div>
 	</div>
 </div>
